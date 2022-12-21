@@ -1,0 +1,22 @@
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" controllerName="by.iba.ZAP_AUTOPARK_11.controller.Driver"
+	xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page title="Информация о водителе">
+				<content>
+					<ObjectHeader id="objectHeader" title="{FIO}" number="{TABNUM}">
+						<ObjectAttribute text="Дата рождения: { path: 'BDATE', formatter: '.formatter.dateValue' }"/>
+						
+					</ObjectHeader>
+					
+				</content>
+				<footer>
+					<Toolbar>
+						<ToolbarSpacer/>
+						<Button type="Emphasized" text="Изменить" press="onDriverInfo"></Button>
+					</Toolbar>
+				</footer>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

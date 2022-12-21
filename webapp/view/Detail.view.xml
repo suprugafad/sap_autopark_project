@@ -1,0 +1,53 @@
+<mvc:View controllerName="by.iba.ZAP_AUTOPARK_11.controller.Detail" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:core="sap.ui.core">
+	<semantic:DetailPage id="page" navButtonPress="onNavBack" showNavButton="{device>/system/phone}" title="{i18n>detailTitle}"
+		busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{MARK}" number="{ path: 'COSTS', formatter: '.formatter.currencyValue' } " numberUnit="{WAERS}">
+				<ObjectAttribute text="Водитель:"/>
+				<ObjectAttribute text="{DRIVER}" active="true" press="onDriverNumPress"/>
+			</ObjectHeader>
+			<IconTabBar id="iconTabBar" class="sapUiResponsiveContentPadding">
+				<items>
+					<IconTabFilter id="iconTabBarFilter1" icon="sap-icon://hint" tooltip="{i18n>detailIconTabBarInfo}"></IconTabFilter>
+					<IconTabFilter id="iconTabBarFilter2" icon="sap-icon://attachment" tooltip="{i18n>detailIconTabBarAttachments}"></IconTabFilter>
+				</items>
+			</IconTabBar>
+			<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" ariaLabelledBy="Title1">
+				<f:toolbar>
+					<Toolbar id="TB1">
+						<Title id="Title1" text="Сведения об автомобиле"/>
+						<ToolbarSpacer/>
+						<Button text="Изменить" enabled="{=!${carFormModel>/editMode}}" press="onChangeFormPress"/>
+						<Button text="Сохранить" enabled="{carFormModel>/editMode}" press="onSaveFormPress"/>
+						<Button text="Отменить" enabled="{carFormModel>/editMode}" press="onCancelFormPress"/>
+						<Button text="В гараж" enabled="{=!${ path: 'REPAIR', formatter: '.formatter.repairValue' }}" press="onMoveToGarageFormPress"/>
+					</Toolbar>
+				</f:toolbar>
+				<f:content>
+					<Label text="Марка"/>
+					<Input value="{MARK}" enabled="false"/>
+					<Label text="Стоимость"/>
+					<Input id="costsText" value="{COSTS}" type="Number" enabled="{carFormModel>/editMode}"/>
+					<Label text="Водитель"/>
+					<Select id="driverSelect" enabled="{carFormModel>/editMode}" forceSelection="false" selectedKey="{DRIVER}" items="{ path: '/DriverSet', sorter: { path: 'FIO' } }">
+						<core:Item key="{TABNUM}" text="{FIO}"/>
+					</Select>
+					<Label text="В ремонте"/>
+					<CheckBox id="repairStatus" text="" selected="{ path: 'REPAIR', formatter: '.formatter.repairValue' }" enabled="{carFormModel>/editMode}"/>
+				</f:content>
+			</f:SimpleForm>
+		</semantic:content>
+		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction>
+		<semantic:shareInJamAction>
+			<semantic:ShareInJamAction id="shareInJam" visible="{FLP>/isShareInJamActive}" press="onShareInJamPress"/>
+		</semantic:shareInJamAction>
+		<semantic:saveAsTileAction>
+			<footerbar:AddBookmarkButton id="shareTile" title="{detailView>/saveAsTileTitle}"/>
+		</semantic:saveAsTileAction>
+	</semantic:DetailPage>
+</mvc:View>

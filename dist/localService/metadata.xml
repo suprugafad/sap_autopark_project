@@ -1,0 +1,37 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZAP_AUTOPARK00_SRV" xml:lang="en" sap:schema-version="1">
+            <EntityType Name="Car" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="NUM"/>
+                </Key>
+                <Property Name="NUM" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="NUM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MARK" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="MARK" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DRIVER" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="DRIVER" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="REPAIR" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="REPAIR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COSTS" Type="Edm.Decimal" Nullable="false" Precision="14" Scale="3" sap:unicode="false" sap:unit="WAERS" sap:label="Затраты" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Currency" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+            </EntityType>
+            <EntityType Name="Driver" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TABNUM"/>
+                </Key>
+                <Property Name="TABNUM" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="TABNUM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FIO" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="FIO" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BDATE" Type="Edm.DateTime" Precision="7" sap:unicode="false" sap:label="Birth date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZAP_AUTOPARK00_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="CarSet" EntityType="ZAP_AUTOPARK00_SRV.Car" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="DriverSet" EntityType="ZAP_AUTOPARK00_SRV.Driver" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZAP_AUTOPARK00_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZAP_AUTOPARK00_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>

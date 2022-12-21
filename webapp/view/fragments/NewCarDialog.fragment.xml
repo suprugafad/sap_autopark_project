@@ -1,0 +1,52 @@
+<core:FragmentDefinition controllerName="by.iba.ZAP_AUTOPARK_11.controller.Master" xmlns:core="sap.ui.core" xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" >
+	<Dialog id="NewCarDialog" title="Добавить автомобиль" contentWidth="60%">
+		<content>
+			<f:SimpleForm id="SimpleFormToolbar" editable="true" layout="ResponsiveGridLayout" labelSpanXL="4" labelSpanL="3" labelSpanM="4"
+				labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="4" emptySpanM="0" emptySpanS="0" columnsXL="2" columnsL="1" columnsM="1"
+				singleContainerFullSize="false" ariaLabelledBy="Title1">
+				<f:content>
+					<Label text="Номер"/>
+					<Input id="numText" value="{NUM}">
+						<layoutData>
+							<l:GridData span="XL2 L1 M3 S4"/>
+						</layoutData>
+					</Input>
+					<Label text="Марка"/>
+					<Input id="markText" value="{MARK}">
+						<layoutData>
+							<l:GridData span="XL2 L1 M6 S6"/>
+						</layoutData>
+					</Input>
+					<Label text="Стоимость"/>
+					<Input id="costsText" value="{COSTS}" type="Number">
+						<layoutData>
+							<l:GridData span="XL2 L1 M3 S4"/>
+						</layoutData>
+					</Input>	
+					<Select id="waersSelect" forceSelection="false" selectedKey="{WAERS}" items="{ path: '/I_Currency', sorter: { path: 'Currency' } }">
+						<core:Item key="{Currency}" text="{Currency}"/>
+						<layoutData>
+							<l:GridData span="XL2 L2 M4 S4"/>
+						</layoutData>
+					</Select>
+					<Label text="Водитель"/>
+					<Select id="driverSelect" forceSelection="false" selectedKey="{DRIVER}" items="{ path: '/DriverSet', sorter: { path: 'FIO' } }">
+						<core:Item key="{TABNUM}" text="{FIO}"/>
+						<layoutData>
+							<l:GridData span="XL2 L2 M6 S6"/>
+						</layoutData>
+					</Select>
+					<Label text="В ремонте"/>
+					<CheckBox id="repairStatus" text="" selected="{ path: 'REPAIR', formatter: '.formatter.repairValue' }" enabled="{carFormModel>/editMode}"/>
+				</f:content>
+			</f:SimpleForm>
+		</content>
+		<beginButton>
+			<Button text="Создать" press="onAddCarInfo"/>
+		</beginButton>
+		
+		<endButton>
+			<Button text="Отменить" press="onCancelCar"/>
+		</endButton>
+	</Dialog>
+</core:FragmentDefinition>
